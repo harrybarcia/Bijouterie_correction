@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %} {{ produit.titre }} {% endblock %}
+
+{% block h1 %}{{ produit.titre }}  {% endblock %}
+
+{% block body %}
+
+<a class= "btn btn-info" href="{{ path('catalogue') }}">Retour catalogue</a>
+
+{% if produit.image %}
+<img src="{{ asset('images/imagesUpload/' ~ produit.image )   }} " style="width:300px" alt="">
+{% else %}
+    <img src="{{ asset('images/imageDefault.jpg')   }}" style="width:300px" alt="">
+{% endif %}
+
+<h5> {{ produit.prix}}</h5>
+
+{% endblock %}

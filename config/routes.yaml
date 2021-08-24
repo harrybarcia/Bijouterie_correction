@@ -1,0 +1,11 @@
+#index:                                                      // name de la route
+#    path: /                                                 // route
+#    controller: App\Controller\DefaultController::index     // fonction
+
+
+
+# pageName:   
+#   path: /pages
+#   controller: App\Controller\PageController::pageFonction
+
+  

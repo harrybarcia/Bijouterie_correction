@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} | 
+
+    {% if modification %}
+        Modifier : {{ category.nom }}
+    {% else %}
+        Ajouter une catégorie
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+{% block h1 %}
+
+    {% if modification %}
+        Modifier : {{ category.nom }}
+    {% else %}
+        Ajouter une catégorie
+    {% endif %}
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+    <a class="btn btn-info m-3" href="{{ path('category_afficher')}}">Gestion des catégories</a>
+
+
+
+    <div class="col-md-6 mx-auto">
+
+        {{ form_start(formCategory) }}
+
+        {{ form_row(formCategory.nom) }}
+
+        
+
+        <input type="submit" 
+        
+            {% if modification %}
+                value="Modifier"
+            {% else %}
+                value="Ajouter"
+            {% endif %}
+    
+         class="btn btn-danger col-md-12 mt-3">
+
+         
+
+        {{ form_end(formCategory) }}
+
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Bijouterie{% endblock %}</title>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> 
+
+        {# <link rel="stylesheet" href="https://bootswatch.com/5/spacelab/bootstrap.min.css"> #}
+        
+        <link rel="stylesheet" href="{{  asset('css/style.css')  }}">
+        
+        {#
+            La fonction twig asset() permet d'accéder au dossier public 
+            1 argument : un fichier qui se trouve dans le dossier public
+        #}
+
+        {% block stylesheets %}{% endblock %}
+
+        
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Bijouterie</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('accueil') }}">Accueil</a>
+                        </li>
+                        {#
+                            La fonction twig path() permet d'appeler une route
+                            2 arguments :
+                            1e (obligatoire) : name de la route
+                            2e (facultatif) : tableau : paramètres
+                        #}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('pageName') }}">Page</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('catalogue') }}">Catalogue</a>
+                        </li>
+                        {% if not app.user %} {# non connecté #}
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('inscription') }}">Inscription</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
+                            </li>
+
+                        {% else %}{# connecté #}
+
+
+                            {% if is_granted('ROLE_USER') %}{# connecté et ROLE_USER #}
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ app.user.prenom }}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{path('profil')}}">Profil</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ path('deconnexion')}}">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+
+                            {% elseif is_granted('ROLE_ADMIN') %}{# connecté et ROLE_ADMIN #}
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Admin
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{ path('profil')}}">Profil</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('back_office') }}">Back Office</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('produit_afficher') }}">Gestion des produits</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('category_afficher') }}">Gestion des catégories</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('admin_marque_index') }}">Gestion des marques</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('admin_matiere_index') }}">Gestion des matières</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ path('deconnexion')}}">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+
+                            {% endif %}
+
+
+                            
+                        {% endif %}
+
+
+
+
+
+
+
+
+
+                        
+                        
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="col-md-10 mx-auto">
+
+            <h1 class="titre">{% block h1 %}{% endblock %}</h1>
+
+            
+            {% block body %}{% endblock %}
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+        
+    </body>
+</html>

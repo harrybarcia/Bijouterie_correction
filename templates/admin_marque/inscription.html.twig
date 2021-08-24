@@ -1,0 +1,30 @@
+
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} | inscription {% endblock %}
+
+{% block h1 %}{% endblock %}
+
+{% block body %}
+
+<div class="col-md-6 mx-auto mt-3"></div>
+
+{{ form_start(formUser) }}
+
+{{ form_row(formUser.email) }}
+
+{{ form_row(formUser.password) }}
+
+{{ form_row(formUsernom.nom) }}
+
+{{ form_row(formUser.prenom) }}
+
+<input type="submit" value="Inscrire" class="btn btn-dark col-md-12 mt-3">
+
+{{ form_end(formUser) }}
+
+
+
+
+{% endblock %}
+

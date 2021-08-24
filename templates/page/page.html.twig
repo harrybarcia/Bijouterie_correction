@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}{# héritage du ficihier base.html.twig #}
+
+{# un block est comme une balise de localisation dans le fichier #}
+
+{% block title %}{{ parent() }} | Page {{ prenomTwig }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset("css/page.css") }}">
+{% endblock %}
+
+{% block body %}
+
+
+
+        {% if ageTwig >= 18 %}
+            
+            <p>majeur</p>
+        {% else %}
+
+            <p>mineur</p>
+            
+        {% endif %}
+
+
+        {% for i in 0..10 %}
+            <div>{{i}}</div>
+        {% endfor %}
+
+
+
+
+
+{% endblock %}
+
+{# commentaire
+
+    {{ }}  : interpolation : variable ou les fonctions twig
+
+    {% %}  : commande, comme une affectatio,  condition boucle block etc...
+#}
+
+
+{% block h1 %}Bonjour {{ prenomTwig }}{% endblock %}

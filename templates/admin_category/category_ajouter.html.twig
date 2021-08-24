@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} | Ajouter une category{% endblock %}
+
+{% block h1 %}Ajouter une category{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-info" href="{{ path("category_afficher") }}">Retour à la gestion des categories</a>
+
+    {# {{ form(formcategory) }}  la fonction twig form() permet d'appeler tout le formulaire de la balise ouvrante <form> à la fermante </form> #}
+
+
+    {# --------------------------------------------------------- #}
+
+
+    <div class="col-md-6 mx-auto mt-3">
+        {{ form_start(formcategory) }}  {# ouverture du formulaire <form> #}
+
+
+        <div class="row">
+
+
+            <div class="col-md-6">
+
+                <div class="col-md-12">{{ form_row(formcategory.nom)    }}</div>
+
+        
+            </div>
+
+
+
+        </div>
+
+       
+
+        {# {{ form_rest(formcategory) }} #}
+
+        <input type="submit" value="Ajouter" class="btn btn-dark col-md-12 mt-3">
+
+
+        {{ form_end(formcategory) }} {# fermeture du formulaire </form> #}
+    </div>
+
+
+
+    {# <input type="submit" value='Ajouter'>
+    <button type='submit'>Ajouter</button> #}
+
+{% endblock %}
+
+
+
+

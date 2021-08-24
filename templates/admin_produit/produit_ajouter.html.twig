@@ -1,0 +1,131 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} | Ajouter un produit{% endblock %}
+
+{% block h1 %}Ajouter un produit{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-info" href="{{ path("produit_afficher") }}">Retour à la gestion des produits</a>
+
+    {# {{ form(formProduit) }}  la fonction twig form() permet d'appeler tout le formulaire de la balise ouvrante <form> à la fermante </form> #}
+
+
+    {# --------------------------------------------------------- #}
+
+
+    <div class="col-md-6 mx-auto mt-3">
+        {{ form_start(formProduit) }}  {# ouverture du formulaire <form> #}
+
+
+         <div class="row">
+
+
+            <div class="col-md-6">
+
+                <div class="col-md-12">{{ form_row(formProduit.titre)    }}</div>
+
+        
+            </div>
+
+
+
+        </div>
+
+            {# <div class="col-md-6">{{ form_row(formProduit.titre) }}</div> #}
+            {# form_row : chaque input (row contient label widget error help ) #}
+            <div class="col-md-6">{{     form_row(formProduit.prix, {"label" : "prix (€) "} )     }}</div>
+
+            {#
+            
+                en php  ["key" => "value"]
+                en twig {"key" : "value"}
+            
+            #}
+
+
+        </div>
+
+        {{ form_row(formProduit.marque)}}
+
+
+                <div class="col-md-6">
+
+                <div class="col-md-12">{{ form_row(formProduit.matieres)    }}</div>
+
+        
+            </div>
+
+
+
+        {{ form_row(formProduit.image, {'attr' : {"onChange" : "loadFile(event)"}} ) }}
+        {# 
+            PHASE 1 :
+
+            l'input files a besoin d'un attribut JS : onChange 
+            à chaque upload (onChange) on lance la fonction js loadFile
+            
+         #}
+
+        <div class="row justify-content-center">
+            <img id="image" style="width:300px">
+            {#
+                PHASE 3 :
+                création d'une balise img SANS attribut src
+                uniquement un id pour le reconnaître en JS
+                cette balise sert à afficher l'image upload
+            #}
+        </div>
+
+                 <div class="row">
+
+
+            <div class="col-md-6">
+
+                <div class="col-md-12">{{ form_row(formProduit.category)    }}</div>
+
+        
+            </div>
+
+                             <div class="row">
+
+
+
+
+
+
+        </div>
+
+        {# {{ form_rest(formProduit) }} #}
+        
+
+        <input type="submit" value="Ajouter" class="btn btn-dark col-md-12 mt-3">
+
+
+        {{ form_end(formProduit) }} {# fermeture du formulaire </form> #}
+    </div>
+
+
+
+    {# <input type="submit" value='Ajouter'>
+    <button type='submit'>Ajouter</button> #}
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+
+    let loadFile = function(event){
+        let image = document.getElementById('image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+    /*
+        PHASE 2 :
+        la fonction permet d'attribut l'attribut src à la balise img
+    */
+</script>
+
+{% endblock %}
+
+

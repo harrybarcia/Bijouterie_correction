@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Catalogue {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/catalogue.css') }}">
+{% endblock %}
+
+{% block h1 %}Catalogue{% endblock %}
+
+
+
+
+{% block body %}
+
+    {# si le tableau produits n'est pas vide #}
+    {% if produits %} {# {% if produits is not empty %} #}
+
+
+        
+        <div class="row justify-content-around">
+
+            {% for produit in produits %}
+
+                <div class="col-md-3 col-sm-5 cardCatalogue p-3 m-4 text-center">
+                
+                    <h5>{{ produit.titre|capitalize }}</h5>
+
+                    {% if produit.image %}
+                        <img src="{{ asset("images/imagesUpload/" ~ produit.image ) }}" alt="" style="width:150px"> 
+                    {% else %}
+                        <img src="{{ asset('images/imageDefault.jpg') }}" alt=""  style="width:150px">
+                    {% endif %}
+
+                    <h5>{{ produit.prix }} €</h5>
+
+                    <a class="btn btn-danger col-md-12" href="{{ path('fiche_produit' ,  {'id' : produit.id} ) }}">Voir la fiche</a>
+                
+                
+                </div>
+                
+            {% endfor %}
+
+        </div>
+
+
+
+
+    {% else %}{# si le tableau produits est vide #}
+        
+
+        <h4 class="text-center text-danger mt-3 fst-italic">Il n'y a aucun produit pour le moment</h4>
+
+
+    {% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

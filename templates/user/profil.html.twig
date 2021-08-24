@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent()}} | Profil {% endblock %}
+
+{% block h1 %}Profil{% endblock %}
+
+{% block body %}
+
+{% if app.user %} {# connecté #}
+
+<ul class="list-group">
+
+    <li class="list-group-item bg-warning" >Nom: {{ app.user.nom  }} </li>
+    <li class="list-group-item bg-warning" >Prenom: {{ app.user.prenom  }} </li>
+    <li class="list-group-item bg-warning" >Email: {{ app.user.email  }}</li>
+    
+</ul>    
+    
+
+    {% endif %}
+
+
+
+{% endblock %}
