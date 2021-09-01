@@ -12,6 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+    /**
+     * Cette route placée avant la classe permet d'intégrer a chaque route du controller un prefixe
+     *
+     * @Route("/admin")
+     */
+
 class AdminProduitController extends AbstractController
 {
     /*
@@ -115,7 +122,6 @@ class AdminProduitController extends AbstractController
             // et si le formulaire a été validé (respect des conditions/contraintes)
             if($form->isSubmitted() && $form->isValid())
             {
-                dd($produit);
 
 
 

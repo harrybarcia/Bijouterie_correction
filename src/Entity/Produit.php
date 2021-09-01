@@ -70,7 +70,12 @@ class Produit
     }
 
 
+    public $newDate;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $stock;
 
     public function getId(): ?int
     {
@@ -169,6 +174,18 @@ class Produit
     public function removeMatiere(Matiere $matiere): self
     {
         $this->matieres->removeElement($matiere);
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(?int $stock): self
+    {
+        $this->stock = $stock;
 
         return $this;
     }

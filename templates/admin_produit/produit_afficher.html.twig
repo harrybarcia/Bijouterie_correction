@@ -44,9 +44,11 @@
                     <th>catégorie</th>
                     <th>marque</th>
                     <th>matieres</th>
+                    <th>Stock</th>
                     <th>Image</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
+                    
                 
                 </tr>
             
@@ -101,6 +103,16 @@
 
                         {% endif %}
 
+                         </td>
+                         <td>
+                         {% if produit.stock==0 %}
+                         <div class="text-danger">Rupture</div>
+                         {% else %}
+                            {{produit.stock}}
+                         
+                         
+                         {% endif %}
+                         
                          </td>
                         <td>
                             {% if produit.image %} {# si la propriété image du produit n'est pas vide/null #}

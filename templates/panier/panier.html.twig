@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} | Votre panier {% endblock %}
+
+{% block h1 %}Votre panier {% endblock %}
+
+{% block body %}
+
+<a href="{{path("panier_vider")}}">Vider le panier</a>
+{% if monPanier.id_produit is defined and monPanier.id_produit|length>0 %}
+    <table class="table table-hover table-striped text-center mt-4">
+        <thead class="bg-dark text-white">
+            <th>Titre</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Total</th>
+            <th>Supprimer</th>
+    
+        </thead>
+    <tbody>
+    {% set count = monPanier.id_produit|length-1 %}
+    {% for i in 0..count %}
+
+    <tr>
+    <td>{{ monPanier.titre[i] }}</td>
+    <td>{{ monPanier.quantite[i] }}</td>
+    <td>{{ monPanier.prix[i] }}</td>
+    <td>{{ monPanier.quantite[i] * monPanier.prix[i] }}</td>
+    <td>
+        <a href="{{ path('panier_retirer',{"id":monPanier.id_produit[i]} )}}">
+        
+        <img src="{{ asset('images/delete.png') }}" alt="">
+        
+        </a>
+    </td>
+    </tr>
+        
+    {% endfor %}
+
+    <tr>
+    <td>Montant total</td>
+    <td colspan="2"></td>
+    <td>{{montantTotal}}</td>
+    </tr>
+    </tbody>
+    
+    </table>
+
+
+{% else %}
+    <div class="text-center text-danger fst-italic">Votre panier est vide</div>
+{% endif %}
+
+
+{% endblock %}
+
+

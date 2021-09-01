@@ -9,12 +9,46 @@
 
 <a class= "btn btn-info" href="{{ path('catalogue') }}">Retour catalogue</a>
 
+<div class="row justify-content-center">
+
 {% if produit.image %}
 <img src="{{ asset('images/imagesUpload/' ~ produit.image )   }} " style="width:300px" alt="">
 {% else %}
     <img src="{{ asset('images/imageDefault.jpg')   }}" style="width:300px" alt="">
 {% endif %}
+</div>
+<h5 class="text-center text-danger"> {{ produit.prix}} €</h5>
 
-<h5> {{ produit.prix}}</h5>
+<h5 class="text-center text-danger">{{ produit.newDate}} </h5>
+
+{% if produit.stock %}
+    {% if produit.stock > 10 %}
+        {% set quantity = 10 %}
+    {% else %}
+        {% set quantity = produit.stock %}
+    {% endif %}
+    
+    <form action="{{ path('panier_ajouter') }}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <select name="quantite" class="form-control" id="" >
+                <option selected disabled >Sélectionnez une quantité</option>
+                    {% for i in 1..quantity %}
+                        <option value="{{i}}">{{i}}</option>
+                        
+                    {% endfor %}
+                </select>
+                <input type="hidden" name="id" value="{{ produit.id }}">
+
+                <div class="col-md-4">
+
+                    <input type="submit"value="Ajouter au panier"class="col-md-12 btn btn-dark mt-3">
+                </div>
+            </div>
+        </div>
+    </form>
+{% else %}
+    <div class="text-center text-danger">Rupture de stock</div>
+{% endif %}
 
 {% endblock %}

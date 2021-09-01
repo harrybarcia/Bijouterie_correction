@@ -16,6 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -103,6 +104,12 @@ class ProduitType extends AbstractType
 
                 ])
 
+                ->add('stock', IntegerType::class, [
+                    "required"=>false,
+                    "attr"=>["value"=>0
+                    ]
+                ])
+
                 //->add('Ajouter', SubmitType::class)
 
                 /*
@@ -165,6 +172,10 @@ class ProduitType extends AbstractType
                     "placeholder" => "Saisir une matiere",
                     "expanded"=>true, //radio
                     "multiple" => true //plusieurs choix
+                ])
+
+                ->add('stock', IntegerType::class, [
+                    "required"=>false
                 ])
             ;
 

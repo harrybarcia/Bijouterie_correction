@@ -11,6 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+    /**
+     * Cette route placée avant la classe permet d'intégrer a chaque route du controller un prefixe
+     *
+     * @Route("/admin")
+     */
+
 class AdminCategoryController extends AbstractController
 {
     /*

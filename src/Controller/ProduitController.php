@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Repository\ProduitRepository;
+use App\Service\DateFr;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,17 +55,25 @@ class ProduitController extends AbstractController
 
         
 
-        $produitsArray = $repoProduit->findAll(); // SELECT * FROM produit
+        $produitsObjectArray = $repoProduit->findAll(); // SELECT * FROM produit
         // $produit = $repoProduit->find(7); // SELECT * FROM produit WHERE id = 7
         // $produits = $repoProduit->findBy(["titre" => "bague en or", "prix" => 100]); // SELECT * FROM produit WHERE id = 7
 
 
-        //dd($produitsArray);
 
+        // $produitsObjectArray = $repoProduit->findTout();
+        // $produitsObjectArray = $repoProduit->findPrix(999.99);
+        //$produitsObjectArray = $repoProduit->findIdentifiant(6);
+        //$produitsObjectArray = $repoProduit->findOrderPrix();
 
+        //$categories = [4];
+        //$produitsObjectArray = $repoProduit->findCategorie($categories);
+        //$produitsObjectArray = $repoProduit->findSearch("o");
+        //$produitsObjectArray = $repoProduit->findBetween(100,300);
+        //dd($produitsObjectArray);
 
         return $this->render('produit/catalogue.html.twig', [
-            "produits" => $produitsArray
+            "produits" => $produitsObjectArray
         ]);
     }
 
@@ -80,7 +89,7 @@ class ProduitController extends AbstractController
      * pour le récupérer dans l'url on place ce nom entre accolade
      * 
      * la route fiche_produit n'existe pas,
-     * la route fiche_produit/id existe
+     * la route fiche_produit/{id} existe
      * 
      * Dans la route :
      * {id?0} : s'il n'y a pas de paramètre id dans l'url on peut définir une valeur par défaut
@@ -90,38 +99,101 @@ class ProduitController extends AbstractController
      * 
      * @Route("/fiche_produit/{id<\d+>}", name="fiche_produit")
      */
-
-     /* méthode longue */
-/*     public function fiche_produit($id, ProduitRepository $repoProduit)
+    public function fiche_produit(Produit $produitObject, DateFr $dateFr)
+                // $id, ProduitRepository $repoProduit    
     {
-        $produitObject = $repoProduit->find($id); // SELECT * FROM produit WHERE id = 7
-        dump ($produitObject);
-        return $this->render("produit/fiche_produit.html.twig", ["produit"=>$produitObject]);
-    } */
-    
-    /* méthode courte */
+        //dd($id);
+        //$produitObject = $repoProduit->find($id);// SELECT * FROM produit WHERE id = $id
 
-    public function fiche_produit(Produit $produitObject)
-    //       $id, ProduitRepository $repoProduit
-{
-//dd($id);
-//$produitObject = $repoProduit->find($id);// SELECT * FROM produit WHERE id = $id
+        //dump($produitObject);
 
-//dd($produitObject);
+        $date_objet = $produitObject->getDateAt();
+        //dump($date_objet);
 
-// -id: 3
-// -titre: "bague en or"
-// -prix: 499.99
-// -dateAt: DateTimeImmutable @1629111427 {#687 ▶}
-// -image: "20210816125707-611a448305828-bague18.jpg"
+        $moisNum = $date_objet->format("m");
+        //dump($moisNum);
 
-return $this->render("produit/fiche_produit.html.twig", [
-"produit" => $produitObject
-]);
-}
+        // -----------------------------------------------------------
+        // $moisArrayFr = [
+        //     "janvier",
+        //     "février",
+        //     "mars",
+        //     "avril",
+        //     "mai",
+        //     "juin",
+        //     "juillet",
+        //     "août",
+        //     "septembre",
+        //     "octobre",
+        //     "novembre",
+        //     "décembre"
+        // ];
+
+        // dump($moisArrayFr);
 
 
-    
+        // foreach($moisArrayFr as $key => $value)
+        // {
+        //     if($key +1  == $moisNum)
+        //     {
+        //         $moisFr = $value;
+        //     }
+        // }
+
+        // dump($moisFr);
+        // ---------------------------------------------------------------
+
+
+        
+
+
+        // $moisFr = $dateFr->moisFr1($moisNum);
+
+
+
+        $dateEntiere=$dateFr->moisFr2($date_objet);
+
+        $produitObject=$dateFr->moisFr3($produitObject);
+
+        // $dateEntiere = $date_objet->format("d") . " " . $moisFr . " " . $date_objet->format("Y");
+
+        // dd($dateEntiere);
+
+        // dd($produitObject);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // -id: 3
+        // -titre: "bague en or"
+        // -prix: 499.99
+        // -dateAt: DateTimeImmutable @1629111427 {#687 ▶}
+        // -image: "20210816125707-611a448305828-bague18.jpg"
+
+
+
+        return $this->render("produit/fiche_produit.html.twig", [
+            "produit" => $produitObject
+        ]);
+    }
     
 
 

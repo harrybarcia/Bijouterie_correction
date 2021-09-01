@@ -60,10 +60,35 @@
                                 <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
                             </li>
 
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('panier') }}">Panier</a>
+                            </li>
+
                         {% else %}{# connecté #}
 
 
-                            {% if is_granted('ROLE_USER') %}{# connecté et ROLE_USER #}
+                            {% if is_granted('ROLE_ADMIN') %}{# connecté et ROLE_ADMIN #}
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Admin
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{ path('profil')}}">Profil</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('back_office') }}">Back Office</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('panier') }}">Panier</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('produit_afficher') }}">Gestion des produits</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('category_afficher') }}">Gestion des catégories</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('admin_marque_index') }}">Gestion des marques</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('admin_matiere_index') }}">Gestion des matières</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('accueil_afficher') }}">Accueil Afficher</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ path('deconnexion')}}">Déconnexion</a></li>
+                                    </ul>
+                                </li>
+
+                            {% elseif is_granted('ROLE_USER') %}{# connecté et ROLE_USER #}
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -74,25 +99,9 @@
                                         <li><hr class="dropdown-divider"></li>
                                         <li><a class="dropdown-item" href="{{ path('deconnexion')}}">Déconnexion</a></li>
                                     </ul>
+                                    <li><a class="dropdown-item" href="{{ path('panier') }}">Panier</a></li>
                                 </li>
 
-                            {% elseif is_granted('ROLE_ADMIN') %}{# connecté et ROLE_ADMIN #}
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Admin
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="{{ path('profil')}}">Profil</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('back_office') }}">Back Office</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('produit_afficher') }}">Gestion des produits</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('category_afficher') }}">Gestion des catégories</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('admin_marque_index') }}">Gestion des marques</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('admin_matiere_index') }}">Gestion des matières</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ path('deconnexion')}}">Déconnexion</a></li>
-                                    </ul>
-                                </li>
 
                             {% endif %}
 

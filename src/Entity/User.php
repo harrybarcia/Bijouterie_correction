@@ -30,22 +30,30 @@ class User implements UserInterface
      */
     private $email;
 
+    
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez saisir votre mot de passe")
-     * @Assert\EqualTo(
-     * propertyPath="confirmPassword",
-     * message="Les mots de passe ne sont pas identiques"
-     * )
-     * 
      */
     private $password;
 
+// ------------------------------------
+    // /**
+    //  * @ORM\Column(type="string", length=255)
+    //  * @Assert\NotBlank(message="Veuillez saisir votre mot de passe")
+    //  * @Assert\EqualTo(
+    //  * propertyPath="confirmPassword",
+    //  * message="Les mots de passe ne sont pas identiques"
+    //  * )
+    //  * 
+    //  */
+    // private $password;
 
-    /**
-     * @Assert\NotBlank(message="Veuillez confirmer votre email")
-     */
-    public $confirmPassword;
+
+    // /**
+    //  * @Assert\NotBlank(message="Veuillez confirmer votre email")
+    //  */
+    // public $confirmPassword;
+// ------------------------------------
 
     /**
      * @ORM\Column(type="string", length=255)

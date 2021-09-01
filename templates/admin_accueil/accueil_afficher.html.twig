@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} | Gestion de la page Accueil{% endblock %}
+
+{% block h1 %}Gestion de la page Accueil{% endblock %}
+
+{% block body %}
+
+
+    <a href="{{ path("accueil_modifier") }}" class="btn btn-success m-2">Modifier</a>
+
+    
+    {% for notification in app.flashes('success') %}
+        <div class="alert alert-success text-center col-md-6 mx-auto m-3">{{notification}}</div>
+    {% endfor %}
+
+
+    <div class="col-md-8 mx-auto mt-3">
+    
+        {# la filtre twig |raw permet non pas d'afficher des balises html mais de "lire/traduire #}
+        {{ accueil.presentation|raw }}
+    
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

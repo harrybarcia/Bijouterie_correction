@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent()}} | Modifier la page accueil {% endblock %}
+
+{% block h1 %}Modifier la page accueil{% endblock %}
+
+{% block body %}
+
+<a href="{{path ("accueil_afficher")}}" class="btn btn-success m-2">Retour accueil</a>
+
+{{ form_start(formAccueil) }}
+
+    {{ form_row(formAccueil.presentation) }}
+
+    <input type="submit" value="Modifier" class="btn btn-warning"></button>
+
+{{ form_end(formAccueil) }}
+
+{% endblock %}

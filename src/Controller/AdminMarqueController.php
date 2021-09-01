@@ -10,7 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
 #[Route('/admin/marque')]
+
 class AdminMarqueController extends AbstractController
 {
     #[Route('/', name: 'admin_marque_index', methods: ['GET'])]

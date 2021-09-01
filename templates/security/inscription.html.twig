@@ -13,9 +13,14 @@
 
 {{ form_row(formUser.email) }}
 
-{{ form_row(formUser.password) }}
+{# 1ere façon bien changer dans user #}
+{# {{ form_row(formUser.password) }}
 
-{{ form_row(formUser.confirmPassword) }}
+{{ form_row(formUser.confirmPassword) }} #}
+
+{{ form_row(formUser.password.first) }}
+
+{{ form_row(formUser.password.second) }}
 
 {{ form_row(formUser.nom) }}
 

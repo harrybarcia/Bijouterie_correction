@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     public function inscription(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $encoder)
     {
         $user=new User;
-        $form=$this->createForm(UserType::class,$user);
+        $form=$this->createForm(UserType::class,$user,['inscription'=>true]);
 
         $form->handleRequest($request);
 

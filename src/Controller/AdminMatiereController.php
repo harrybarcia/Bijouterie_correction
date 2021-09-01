@@ -10,6 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+    /**
+     * Cette route placée avant la classe permet d'intégrer a chaque route du controller un prefixe
+     *
+     * @Route("/admin")
+     */
+
 #[Route('/admin/matiere')]
 class AdminMatiereController extends AbstractController
 {
